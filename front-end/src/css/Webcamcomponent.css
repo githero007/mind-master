@@ -1,0 +1,79 @@
+/* WebcamComponent.css */
+
+/* Container for the Webcam Component */
+.camera-container {
+    background-color: #222;
+    /* Dark background for better contrast */
+    border-radius: 10px;
+    /* Rounded corners */
+    padding: 20px;
+    /* Space around the content */
+    display: flex;
+    /* Flexbox for aligning children */
+    flex-direction: column;
+    /* Stack children vertically */
+    align-items: center;
+    /* Center content horizontally */
+    justify-content: center;
+    /* Center content vertically */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    /* Shadow effect */
+    color: #fff;
+    /* Text color */
+    width: 100%;
+    /* Full width of the parent */
+    max-width: 300px;
+    /* Max width for the container */
+    margin: auto;
+    /* Center container horizontally */
+}
+
+/* Button to toggle the camera */
+.camera-container button {
+    background-color: #444;
+    /* Button background */
+    color: #fff;
+    /* Text color */
+    border: none;
+    /* Remove default border */
+    padding: 10px 20px;
+    /* Button padding */
+    margin-bottom: 20px;
+    /* Space below the button */
+    cursor: pointer;
+    /* Cursor pointer on hover */
+    border-radius: 5px;
+    /* Rounded corners for button */
+    transition: background-color 0.3s;
+    /* Smooth hover effect */
+}
+
+/* Button hover effect */
+.camera-container button:hover {
+    background-color: #666;
+    /* Lighter shade on hover */
+}
+
+/* Webcam display styling */
+.camera-container .webcam {
+    width: 60px;
+    /* Fixed width */
+    height: px;
+    /* Fixed height */
+    border: 2px solid #fff;
+    /* White border for contrast */
+    border-radius: 10px;
+    /* Rounded corners for webcam */
+    margin-bottom: 20px;
+    /* Space below the webcam */
+}
+
+/* Emotion text styling */
+.camera-container p {
+    font-size: 18px;
+    /* Larger text size */
+    font-weight: bold;
+    /* Bold text */
+    margin: 0;
+    /* Remove default margin */
+}

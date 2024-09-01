@@ -71,7 +71,7 @@ export function PdfInput() {
 
 
     return (
-        <div>
+        <div className="pdf-container">
             {!fileUrl && (<div><label htmlFor="avatar">Drag and drop a file or select a PDF:</label>
                 <input
                     type="file"
