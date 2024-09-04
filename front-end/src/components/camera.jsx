@@ -104,7 +104,7 @@ export const WebcamComponent = () => {
     };
 
     return (
-        <div>
+        <div className="camera-container">
             <button onClick={handleCameraStatus}>
                 {camera ? "Close Camera" : "Open Camera"}
             </button>
