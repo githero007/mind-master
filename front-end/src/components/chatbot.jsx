@@ -23,7 +23,7 @@ export const Chatbot = () => {
 
                 const botResponse = response.data.response; // Extract bot response
 
-                // Update messages in global state with bot response
+                // Update messages in global state wiFth bot response
                 setMessages((oldMessages) => [
                     ...oldMessages,
                     { text: botResponse, isUser: false },

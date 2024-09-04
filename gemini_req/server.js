@@ -7,7 +7,7 @@ app.use(cors());
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Initialize Google Generative AI
-const genAI = new GoogleGenerativeAI("AIzaSyBeTzQwjjoegxxBGk-47p9Wed2BV8eENfQ");
+const genAI = new GoogleGenerativeAI("your api key");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 // Function to classify PDF content and generate a summary
@@ -39,7 +39,7 @@ app.post('/', async (req, res) => {
         const resultText = await classifyPdfContent(text.join(" ")); // Join the text array into a single string
         summary = resultText; // Store the result in global variable 'summary'
         console.log('Generated Summary:', summary);
-        res.send("The extracted text has been received and processed successfully.");
+        res.json({ summary });
     } catch (error) {
         console.error('Error processing the text:', error);
         res.status(500).send('Error processing the text.');
@@ -60,7 +60,7 @@ app.post('/mood', async (req, res) => {
     const prompt = `From the summary, generate ${category} questions: ${summary} `;
     try {
         const result = await model.generateContent(prompt);
-        const suggestions = response.data.suggestions; // Get the generated suggestions
+        const suggestions = result.response.text(); // Get the generated suggestions
         console.log('Received Suggestions:', suggestions);
         res.json({ suggestions });
     } catch (error) {
