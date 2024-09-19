@@ -3,6 +3,8 @@ import { Document, Page, pdfjs } from 'react-pdf';
 import axios, { isCancel, AxiosError } from 'axios';
 import 'react-pdf/dist/esm/Page/TextLayer.css';
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
+import { useRecoilState } from 'recoil';
+import { messagesAtom } from '../atoms/atom';
 
 // Set workerSrc for pdfjs
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
@@ -12,6 +14,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = new URL(
 
 export function PdfInput() {
     const [selectedFile, setSelectedFile] = useState(null);
+    const [messages, setMessages] = useRecoilState(messagesAtom);
     const [text, setText] = useState("");
     const [fileUrl, setFileUrl] = useState(null);
     const [numPages, setNumPages] = useState(null);
@@ -34,7 +37,7 @@ export function PdfInput() {
                 }
             });
             const extractedTextArray = response.data.text; // This should match the structure from the Express server response
-            console.log('Extracted Text:', extractedTextArray); // Log the extracted text array
+            //console.log('Extracted Text:', extractedTextArray); // Log the extracted text array
 
             // Send the extracted text to another endpoint on your server
             const processedResponse = await axios.post('http://localhost:3000/', {
@@ -44,6 +47,16 @@ export function PdfInput() {
                     'Content-Type': 'application/json'
                 }
             });
+            console.log("this is processed response", processedResponse.data);
+            // Ensure the processed response is correctly formatted as a string
+            const botMessage = typeof processedResponse.data === 'string'
+                ? processedResponse.data
+                : JSON.stringify(processedResponse.data); // Convert to string if necessary
+
+            // Update messages with bot response
+            setMessages((oldMessages) => [...oldMessages, { text: botMessage, isUser: false }]);
+
+
 
         } catch (error) {
             console.error("An error occurred while sending the PDF to the server:", error);

@@ -11,9 +11,10 @@ function App() {
   return (
     <>
       <div className="app-container">
-        <PdfInput />
-        <WebcamComponent />
-        <Chatbot />
+        <div className="pdf-container">  <PdfInput /></div>
+        <div className="camera-container"><WebcamComponent /></div>
+        <div className="chatbot-contaienr">  <Chatbot /></div>
+
       </div>
     </>
   )
